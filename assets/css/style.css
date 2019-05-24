@@ -1,0 +1,58 @@
+body {
+	margin-top: 50px;
+}
+
+.jumbotron .container {
+	opacity: 0;
+	transform: translate(0px, -50px);
+	transition: 1.3s;
+}
+
+.jumbotron .container.load {
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+.jumbotron img {
+	width: 25%;
+}
+
+.portofolio .card {
+	opacity: 0;
+	transform: translate(0px, -30px);
+	transition: 1s;
+}
+
+.portofolio .card.load {
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+.login .card,
+.login .ket {
+	opacity: 0;
+	transition: 1.3s;
+}
+
+.login .card {
+	transform: translate(12px, 0px);
+}
+
+.login .ket {
+	transform: translate(0px, -12px);
+}
+
+.login .card.load,
+.login .ket.load {
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+section {
+	min-height: 420px;
+}
+
+footer {
+	min-height: 50px;
+	padding-top: 12px;
+}
