@@ -5,6 +5,8 @@ class Home extends CI_Controller
 {
     public function index()
     {
+        log_ok();
+
         $text = 'Some quick example text to build on the card title and make up the bulk of the card content.';
 
         $gambar = base_url('assets/img/thumbs/');
@@ -59,9 +61,9 @@ class Home extends CI_Controller
                         $this->session->set_userdata($userdata);
 
                         if ($this->session->userdata('role_id') == 1) {
-                            rediect('admin');
+                            redirect('admin/index');
                         } else {
-                            redirect('profil');
+                            redirect('profil/index');
                         }
                     } else {
                         $this->session->set_flashdata('pesan', 'Kata sandi yang anda masukkan salah');
@@ -76,5 +78,18 @@ class Home extends CI_Controller
                 redirect('home/index#login');
             }
         }
+    }
+
+    public function blocked()
+    {
+        $this->load->view('block/terblokir');
+    }
+
+    public function keluar()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        redirect('home');
     }
 }

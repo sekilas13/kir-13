@@ -15,6 +15,7 @@
 <script src="http://localhost/cdn/bootstrap/js/bootstrap.bundle.js"></script>
 <script src="http://localhost/cdn/lightbox/ekko-lightbox.js"></script>
 <script src="<?= base_url('assets/js/script.js'); ?>"></script>
+<script src="<?= base_url('assets/js/jam.js'); ?>"></script>
 </body>
 
 </html>

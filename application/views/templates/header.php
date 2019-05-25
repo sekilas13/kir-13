@@ -36,6 +36,11 @@
                     <li class="nav-item">
                         <a href="#sejarah" class="nav-link smooth-scroll">Sejarah</a>
                     </li>
+                    <li class="nav-item">
+                        <div class="nav-link btn btn-primary text-light jam">
+
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
