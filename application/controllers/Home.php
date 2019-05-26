@@ -15,28 +15,32 @@ class Home extends CI_Controller
             'judul' => 'KIR SMPN 13 BEKASI',
             'portofolio' => [
                 [
-                    'src' => $gambar,
-                    'text' => $text
+                    [
+                        'src' => $gambar,
+                        'text' => $text
+                    ],
+                    [
+                        'src' => $gambar,
+                        'text' => $text
+                    ],
+                    [
+                        'src' => $gambar,
+                        'text' => $text
+                    ]
                 ],
                 [
-                    'src' => $gambar,
-                    'text' => $text
-                ],
-                [
-                    'src' => $gambar,
-                    'text' => $text
-                ],
-                [
-                    'src' => $gambar,
-                    'text' => $text
-                ],
-                [
-                    'src' => $gambar,
-                    'text' => $text
-                ],
-                [
-                    'src' => $gambar,
-                    'text' => $text
+                    [
+                        'src' => $gambar,
+                        'text' => $text
+                    ],
+                    [
+                        'src' => $gambar,
+                        'text' => $text
+                    ],
+                    [
+                        'src' => $gambar,
+                        'text' => $text
+                    ]
                 ]
             ]
         ];

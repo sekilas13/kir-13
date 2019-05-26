@@ -21,9 +21,6 @@ class Admin extends CI_Controller
             ],
             [
                 'src' => 'http://localhost/cdn/sweetalert/sweetalert2.all.js'
-            ],
-            [
-                'src' => base_url('assets/js/jam.js')
             ]
         ];
         $this->_misc = [
@@ -46,7 +43,9 @@ class Admin extends CI_Controller
     public function daftar()
     {
         $data = [
-            'judul' => 'Daftarkan Murid Baru'
+            'judul' => 'Daftarkan Murid Baru',
+            'tab' => $this->_misc['tab'],
+            'script' => $this->_script
         ];
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');

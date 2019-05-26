@@ -40,7 +40,7 @@
         <div class="row">
 
             <?php $i = 1; ?>
-            <?php foreach ($portofolio as $p) : ?>
+            <?php foreach ($portofolio[0] as $p) : ?>
                 <?php $source = $p['src']; ?>
                 <div class="col-md mb-4">
                     <div class="card">
@@ -56,6 +56,24 @@
                 <?php $i++; ?>
             <?php endforeach; ?>
 
+        </div>
+        <div class="row">
+            <?php $a = 1; ?>
+            <?php foreach ($portofolio[1] as $p) : ?>
+                <?php $source = $p['src']; ?>
+                <div class="col-md mb-4">
+                    <div class="card">
+                        <a href="<?= $source . $a . '.jpg'; ?>" data-toggle="lightbox">
+                            <img class="card-img-top" src="<?= $source . $a . '.jpg'; ?>" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text"><?= $p['text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <?php $i++; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

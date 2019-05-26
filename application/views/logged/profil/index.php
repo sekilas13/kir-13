@@ -5,7 +5,7 @@ $role = $role['role'];
 
 ?>
 
-<section style="min-height : 476px; margin-top: 80px;">
+<section>
     <div class="container">
         <div class="row mb-4">
             <div class="col text-center">
@@ -13,7 +13,7 @@ $role = $role['role'];
             </div>
         </div>
         <div class="card">
-            <div class="card-body">
+            <div class="card-body shadow">
                 <div class="row">
                     <div class="col-lg-2">
                         <img src="<?= base_url('assets/img/profil/') . $user['gambar']; ?>" class="rounded img-thumbnail">
@@ -24,6 +24,7 @@ $role = $role['role'];
                             <li class="list-group-item">Email : <?= $user['email']; ?></li>
                             <li class="list-group-item">Akses : <?= $role; ?></li>
                         </ul>
+                        <?= $this->session->flashdata('pesan'); ?>
                     </div>
                 </div>
             </div>

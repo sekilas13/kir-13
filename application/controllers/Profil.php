@@ -21,9 +21,6 @@ class Profil extends CI_Controller
             ],
             [
                 'src' => 'http://localhost/cdn/sweetalert/sweetalert2.all.js'
-            ],
-            [
-                'src' => base_url('assets/js/jam.js')
             ]
         ];
 
@@ -51,14 +48,48 @@ class Profil extends CI_Controller
     public function ubah()
     {
         $data['script'] = $this->_script;
-        $data['judul'] = 'Profil Saya';
+        $data['judul'] = 'Ubah Profil';
         $data['tab'] = $this->_misc['tab'];
         $data['user'] = $this->_misc['user'];
+
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('log/header', $data);
             $this->load->view('logged/profil/ubah', $data);
             $this->load->view('log/footer', $data);
+        } else {
+            $nama = $this->input->post('nama');
+            $email = $this->input->post('email');
+
+            // cek jika ada gambar yang akan diupload
+            $gambar_upload = $_FILES['gambar']['name'];
+
+            if ($gambar_upload) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '2048';
+                $config['upload_path'] = './assets/img/profil/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('gambar')) {
+                    $gambar_lama = $data['user']['gambar'];
+                    if ($gambar_lama != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
+                    }
+                    $gambar_baru = $this->upload->data('file_name');
+                    $this->db->set('gambar', $gambar_baru);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $this->db->set('nama', $nama);
+            $this->db->where('email', $email);
+            $this->db->update('pengguna');
+
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Profil Berhasil Diperbarui !</div>');
+            redirect('profil');
         }
     }
 }

@@ -13,10 +13,12 @@
     <style>
         body {
             margin-top: 50px;
+            background-color: #eaeaea;
         }
 
         section {
-            min-height: 420px;
+            min-height: 500px;
+            margin-top: 80px;
         }
 
         footer {
@@ -73,7 +75,7 @@
                         </div>
                     <?php endforeach; ?>
 
-                    <div class="nav-link btn btn-primary text-light jam"></div>
+                    <a href="<?= base_url('home/keluar'); ?>" class="nav-item nav-link btn btn-danger keluar mr-1 active">Keluar</a>
                 </div>
             </div>
         </div>
