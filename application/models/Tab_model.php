@@ -3,10 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Tab_model extends CI_Model
 {
+    public function all_tab()
+    {
+        return $this->db->get('tab')->result_array();
+    }
+
     public function tab($id = null)
     {
         if ($id) {
-            $query = "SELECT `t`.`id`,`nama` FROM `tab` AS `t` 
+            $query = "SELECT `t`.`id`,`nama`,`aktif` FROM `tab` AS `t` 
                         JOIN `tab_access` AS `t_a` ON `t_a`.`tab_id` = `t`.`id`
                         WHERE `t`.`id` = $id
                     ";

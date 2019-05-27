@@ -21,6 +21,9 @@ class Profil extends CI_Controller
             ],
             [
                 'src' => 'http://localhost/cdn/sweetalert/sweetalert2.all.js'
+            ],
+            [
+                'src' =>  base_url('assets/js/logout.js')
             ]
         ];
 

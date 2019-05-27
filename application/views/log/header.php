@@ -16,8 +16,13 @@
             background-color: #eaeaea;
         }
 
+        section.satu {
+            min-height: 700px;
+            margin-top: 80px;
+        }
+
         section {
-            min-height: 500px;
+            min-height: 476px;
             margin-top: 80px;
         }
 
