@@ -16,7 +16,11 @@ $role = $role['role'];
             <div class="card-body shadow">
                 <div class="row">
                     <div class="col-lg-2">
-                        <img src="<?= base_url('assets/img/profil/') . $user['gambar']; ?>" class="rounded img-thumbnail">
+                        <?php if ($user['gambar'] == 'default.jpg') : ?>
+                            <img src="<?= base_url('assets/img/profil/') . $user['gambar']; ?>" class="rounded img-thumbnail">
+                        <?php else : ?>
+                            <img src="<?= base_url('assets/img/profil/') . $user['gambar']; ?>" class="rounded img-thumbnail gambar-profil">
+                        <?php endif; ?>
                     </div>
                     <div class="col-lg-10">
                         <ul class="list-group">

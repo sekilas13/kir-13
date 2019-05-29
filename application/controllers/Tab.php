@@ -39,22 +39,37 @@ class Tab extends CI_Controller
         $data['tab'] = $this->_misc['tab'];
         $data['all_tab'] = $this->tab->all_tab();
 
+        var_dump($data);
+        die;
+
         $this->load->view('log/header', $data);
         $this->load->view('logged/tab/index', $data);
         $this->load->view('log/footer', $data);
     }
-    
+
     public function t_tambah()
     {
         $data['script'] = $this->_script;
         $data['judul'] = 'Tab Manejemen';
         $data['tab'] = $this->_misc['tab'];
-        $data['tabAda'] = $this->tab->all_tab();
-    
-        $this->load->view('log/header', $data);
-        $this->load->view('logged/tab/t_tambah', $data);
-        $this->load->view('log/footer', $data);
 
+        if ($this->form_validation->run()  == false) {
+            $this->load->view('log/header', $data);
+            $this->load->view('logged/tab/t_tambah', $data);
+            $this->load->view('log/footer', $data);
+        } else {
+            $tab = [
+                'nama' => $this->input->post('nama'),
+                'aktif' => $this->input->post('aktif')
+            ];
+
+            $tab_ada = $this->tab->tab_exist($tab['nama']);
+
+            if ($tab_ada) {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Tab sudah ada</div>');
+                redirect('tab/tambah');
+            } else { }
+        }
     }
 
     public function t_ubah($id = null)
@@ -78,7 +93,7 @@ class Tab extends CI_Controller
             $tab_baru = $this->input->post('tab');
 
             $this->db->set('nama', $tab_baru);
-            $this->db->set('aktif',$ch);
+            $this->db->set('aktif', $ch);
             $this->db->where('id', $id);
             $this->db->update('tab');
 

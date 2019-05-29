@@ -21,6 +21,10 @@
             margin-top: 80px;
         }
 
+        .gambar-profil {
+            transform: rotate(-90deg);
+        }
+
         section {
             min-height: 476px;
             margin-top: 80px;

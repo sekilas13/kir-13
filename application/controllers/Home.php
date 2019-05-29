@@ -71,6 +71,7 @@ class Home extends CI_Controller
                         }
                     } else {
                         $this->session->set_flashdata('pesan', 'Kata sandi yang anda masukkan salah');
+                        $this->session->set_flashdata('email', $email);
                         redirect('home/index#login');
                     }
                 } else {

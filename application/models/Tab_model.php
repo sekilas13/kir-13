@@ -11,22 +11,31 @@ class Tab_model extends CI_Model
     public function tab($id = null)
     {
         if ($id) {
-            $query = "SELECT `t`.`id`,`nama`,`aktif` FROM `tab` AS `t` 
-                        JOIN `tab_access` AS `t_a` ON `t_a`.`tab_id` = `t`.`id`
-                        WHERE `t`.`id` = $id
-                    ";
+            $this->db->select('`t`.`id`,`nama`,`aktif`');
+            $this->db->from('tab');
+            $this->db->join('tab_access', 'tab_access.tab_id = tab.id');
+            $this->db->where('tab.id', id);
+            $query = $this->db->get();
+
             $result = $this->db->query($query)->row_array();
         } else {
             $role_id = $this->session->userdata('role_id');
-            $query = "SELECT `t`.`id`,`nama` FROM `tab` AS `t` 
-                        JOIN `tab_access` AS `t_a` ON `t_a`.`tab_id` = `t`.`id`
-                        WHERE `t_a`.`role_id` = $role_id AND `t`.`aktif` = 1
-                    ";
+            $this->db->select('`tab`.`id`,`nama`,`aktif`');
+            $this->db->from('tab');
+            $this->db->join('tab_access', 'tab_access.tab_id = tab.id');
+            $this->db->where('tab_access.role_id', $role_id);
+            $this->db->where('tab.aktif', 1);
+            $query = $this->db->get();
 
-            $result = $this->db->query($query)->result_array();
+            $result = $query->result_array();
         }
 
         return $result;
+    }
+
+    public function tab_exist($nama)
+    {
+        return $this->db->get_where('tab', ['nama' => $nama])->row_array();
     }
 
     public function sub_tab($id = null)
