@@ -96,22 +96,22 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="<?= base_url('home/index'); ?>" method="post">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" name="email" class="form-control" <?php if (!$this->session->flashdata('email')) : ?> <?php else : ?> value="<?= $this->session->flashdata('email'); ?>" <?php endif; ?>>
-                                <?= form_error('email', '<small class="pl-3 text-danger">', '</small>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="kata-sandi">Kata Sandi</label>
-                                <input type="password" id="kata-sandi" name="kata-sandi" class="form-control">
-                                <?= form_error('kata-sandi', '<small class="pl-3 text-danger">', '</small>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    Masuk
-                                </button>
-                            </div>
+                        <?= form_open('home/index'); ?>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" class="form-control" value="<?= set_value('email'); ?>">
+                            <?= form_error('email', '<small class="pl-3 text-danger">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="kata-sandi">Kata Sandi</label>
+                            <input type="password" id="kata-sandi" name="kata-sandi" class="form-control">
+                            <?= form_error('kata-sandi', '<small class="pl-3 text-danger">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Masuk
+                            </button>
+                        </div>
                         </form>
                     </div>
                 </div>

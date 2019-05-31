@@ -22,13 +22,13 @@ class Tab_model extends CI_Model
     public function tab($id = null)
     {
         if ($id) {
-            $this->db->select('`t`.`id`,`nama`,`aktif`');
+            $this->db->select('`tab`.`id`,`nama`,`aktif`');
             $this->db->from('tab');
             $this->db->join('tab_access', 'tab_access.tab_id = tab.id');
-            $this->db->where('tab.id', id);
+            $this->db->where('tab.id', $id);
             $query = $this->db->get();
 
-            $result = $this->db->query($query)->row_array();
+            $result = $query->row_array();
         } else {
             $role_id = $this->session->userdata('role_id');
             $this->db->select('`tab`.`id`,`nama`,`aktif`');
@@ -63,6 +63,7 @@ class Tab_model extends CI_Model
             $this->db->from('sub_tab');
             $this->db->join('tab', 'sub_tab.tab_id = tab.id');
             $this->db->where('tab.id', $id);
+            $this->db->where('sub_tab.aktif', 1);
             $query = $this->db->get();
 
             $result = $query->result_array();

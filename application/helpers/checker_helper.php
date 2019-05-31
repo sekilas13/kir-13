@@ -35,7 +35,12 @@ function access()
         'tab_id' => $tab_id
     ]);
 
+    $tabAktif = $querytab['aktif'];
+
     if ($userAccess->num_rows() < 1) {
         redirect('home/blocked');
+    } else if ($tabAktif != 1) {
+        $_POST['tab'] = $tab;
+        redirect('server/error/503');
     }
 }
