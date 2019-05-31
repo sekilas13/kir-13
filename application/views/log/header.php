@@ -1,3 +1,6 @@
+<?php
+$tab = $this->tab->tab();
+?>
 <!DOCTYPE html>
 <html lang="en">
 

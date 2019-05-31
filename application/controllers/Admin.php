@@ -5,8 +5,6 @@ class Admin extends CI_Controller
 {
     private $_script;
 
-    private $_misc;
-
     public function __construct()
     {
         parent::__construct();
@@ -26,15 +24,11 @@ class Admin extends CI_Controller
                 'src' =>  base_url('assets/js/logout.js')
             ]
         ];
-        $this->_misc = [
-            'tab' => $this->tab->tab()
-        ];
     }
     public function index()
     {
         $data = [
             'judul' => 'Dashboard',
-            'tab' => $this->_misc['tab'],
             'script' => $this->_script
         ];
 
@@ -47,7 +41,6 @@ class Admin extends CI_Controller
     {
         $data = [
             'judul' => 'Daftarkan Murid Baru',
-            'tab' => $this->_misc['tab'],
             'script' => $this->_script
         ];
 

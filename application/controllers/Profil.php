@@ -28,7 +28,6 @@ class Profil extends CI_Controller
         ];
 
         $this->_misc = [
-            'tab' => $this->tab->tab(),
             'user' => $this->auth->user_email($this->session->userdata('email'))
         ];
     }
@@ -37,7 +36,6 @@ class Profil extends CI_Controller
     {
         $data['script'] = $this->_script;
         $data['judul'] = 'Profil Saya';
-        $data['tab'] = $this->_misc['tab'];
         $data['user'] = $this->_misc['user'];
 
         $this->load->view('log/header', $data);
@@ -46,13 +44,19 @@ class Profil extends CI_Controller
     }
 
     public function ubah_pw()
-    { }
+    {
+        $data['script'] = $this->_script;
+        $data['judul'] = 'Ubah Kata Sandi';
+
+        $this->load->view('log/header', $data);
+        $this->load->view('logged/profil/ubah_pw', $data);
+        $this->load->view('log/footer', $data);
+    }
 
     public function ubah()
     {
         $data['script'] = $this->_script;
         $data['judul'] = 'Ubah Profil';
-        $data['tab'] = $this->_misc['tab'];
         $data['user'] = $this->_misc['user'];
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');

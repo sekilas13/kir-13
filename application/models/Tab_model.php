@@ -8,6 +8,17 @@ class Tab_model extends CI_Model
         return $this->db->get('tab')->result_array();
     }
 
+    public function all_sub_tab()
+    {
+        $this->db->select('`sub_tab`.`id`,`tab`.`nama`,`nama_sub`,`url`,`sub_tab`.`aktif`');
+        $this->db->from('sub_tab');
+        $this->db->join('tab', 'sub_tab.tab_id = tab.id');
+        $this->db->order_by('sub_tab.id', 'ASC');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
     public function tab($id = null)
     {
         if ($id) {
@@ -41,20 +52,33 @@ class Tab_model extends CI_Model
     public function sub_tab($id = null)
     {
         if (!$id) {
-            $query = "SELECT `sub_tab`.*, `tab`.`nama`
-                FROM `sub_tab` JOIN `tab`
-                ON `sub_tab`.`tab_id` = `tab`.`id`
-              ";
-            $result = $this->db->query($query)->result_array();
+            $this->db->select('`sub_tab`.`id`,`tab`.`nama`,`nama_sub`,`url`,`sub_tab`.`aktif`');
+            $this->db->from('sub_tab');
+            $this->db->join('tab', 'sub_tab.tab_id = tab.id');
+            $query = $this->db->get();
+
+            $result = $query->result_array();
         } else {
-            $query = "SELECT `sub_tab`.*, `tab`.`nama`
-                FROM `sub_tab` JOIN `tab`
-                ON `sub_tab`.`tab_id` = `tab`.`id` 
-                WHERE `sub_tab`.`tab_id` = $id AND `sub_tab`.`aktif` = 1
-              ";
-            $result = $this->db->query($query)->result_array();
+            $this->db->select('`sub_tab`.`id`,`sub_tab`.`tab_id`,`tab`.`nama`,`nama_sub`,`url`,`sub_tab`.`aktif`');
+            $this->db->from('sub_tab');
+            $this->db->join('tab', 'sub_tab.tab_id = tab.id');
+            $this->db->where('tab.id', $id);
+            $query = $this->db->get();
+
+            $result = $query->result_array();
         }
 
         return $result;
+    }
+
+    public function sub_id($id)
+    {
+        $this->db->select('`sub_tab`.`id`,`sub_tab`.`tab_id`,`tab`.`nama`,`nama_sub`,`url`,`sub_tab`.`aktif`');
+        $this->db->from('sub_tab');
+        $this->db->join('tab', 'sub_tab.tab_id = tab.id');
+        $this->db->where('sub_tab.id', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
     }
 }
