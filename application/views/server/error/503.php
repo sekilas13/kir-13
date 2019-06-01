@@ -9,8 +9,15 @@
                         </div>
                         <div class="col-8">
                             <h3>Mohon Maaf</h3>
-                            <p>Tab yang anda tuju sedang ada perbaikan.Coba hubungi pemilik server.</p>
-                            <a href="" class="text-primary">Kembali</a>
+                            <p>
+                                <?php if ($this->uri->segment(4) == 'sub') : ?>
+                                    Sub Tab
+                                <?php else : ?>
+                                    Tab
+                                <?php endif; ?>
+                                yang anda tuju sedang ada perbaikan.Coba hubungi pemilik server.
+                            </p>
+                            <a href="<?= base_url('profil'); ?>" class="text-primary">Kembali</a>
                         </div>
                     </div>
                 </div>

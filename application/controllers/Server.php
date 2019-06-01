@@ -15,7 +15,6 @@ class Server extends CI_Controller
 
         if ($param == 503) {
             $data['judul'] = 'OOPS !!!';
-            $sec['tab'] = $this->input->post('tab');
             $this->load->view('templates/h-server', $data);
         } else if ($param == 404) {
             $data['judul'] = 'TIDAK DITEMUKAN';

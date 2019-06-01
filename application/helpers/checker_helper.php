@@ -40,7 +40,26 @@ function access()
     if ($userAccess->num_rows() < 1) {
         redirect('home/blocked');
     } else if ($tabAktif != 1) {
-        $_POST['tab'] = $tab;
         redirect('server/error/503');
+    }
+
+    $method = $ci->uri->segment(2);
+
+    if ($method == null) {
+        $method = 'index';
+    }
+    $method = strtolower($method);
+
+    $sub_tab = $ci->db->get_where('sub_tab', [
+        'tab_id' => $tab_id,
+        'url' => $method
+    ])->row_array();
+
+    if (!$sub_tab) {
+        return;
+    } else {
+        if ($sub_tab['aktif'] == 0) {
+            redirect('server/error/503/sub');
+        }
     }
 }
